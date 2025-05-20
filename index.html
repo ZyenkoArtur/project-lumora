@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body class="body-index">
+<div class="body-index1">
+<div th:replace="layouts/header::header"></div>
+    <p>Cоєві свічки ручної роботи</p>
+<h3>Неймовірні аромати для дому допоможуть створити унікальну розслаблюючу атмосферу</h3>
+<button>Переглянути каталог</button>
+<h1>Свічки ручної роботи для натхнення і затишку</h1>
+<hr class="line">
+    <main class="main">
+        <div class="items" th:if="${!items.isEmpty()}">
+            <div class="product-card" th:each="el : ${items}">
+                <a th:href="'/'+${el.id}" ><img class="product-image" th:src="@{${el.image}}" alt="Фото"></a>
+                <h3 class="product-title" th:text="${el.title}"></h3>
+                <h4 class="product-info" th:text="${el.info}"></h4>
+                <span class="product-price" th:text="${el.price + ' ₴'}"></span>
+            </div>
+        </div>
+        <div th:if="${items.isEmpty()}">
+            <p>Товар відсутній</p>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>
